@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello Templates</title>
+
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+</head>
+<body>
+
+<h1>Hello Spring!</h1>
+
+<p>This site was built by <span th:text="${author}"></span></p>
+
+<h2>My favorite food</h2>
+
+<ul>
+    <li th:each="food : ${favoriteFoods}" th:text="${food}"></li>
+</ul>
+
+<h2>Zebra Picture</h2>
+
+<img src="../img/zebra.png">
+
+</body>
+</html>
+
+
+
+
+
+
