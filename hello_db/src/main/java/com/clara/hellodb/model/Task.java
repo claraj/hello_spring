@@ -1,12 +1,6 @@
 package com.clara.hellodb.model;
 
-import java.util.Date;
-
 import javax.persistence.*;
-
-/**
- * Created by clara on 3/30/18.
- */
 
 @Entity
 public class Task {

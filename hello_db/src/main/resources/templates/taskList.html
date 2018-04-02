@@ -20,7 +20,7 @@
 
 <ul>
     <li th:each="task : ${tasks}">
-        <span th:if="${task.urgent}"><img class="urgent-icon" src="img/urgent.png"></span>
+        <img class="urgent-icon" th:if="${task.urgent}" src="img/urgent.png">
         <span th:text="${task.text}"></span>
     </li>
 </ul>
@@ -29,3 +29,4 @@
 
 </body>
 </html>
+

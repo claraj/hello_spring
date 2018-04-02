@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
 
@@ -29,16 +30,17 @@ public class TaskController {
     }
     
     /* Handles requests to the home page. Displays a form that's bound to a new
-    * Task object. In the future, When the form is submitted, (that's the /addTask route, below)
-    * the Task object will be updated to include the data entered in the form, and this Task object will be
-    * sent to the server. */
+    * Task object. In the future, When the form is submitted from the browser,
+    * (submitting the form creates a POST request to the /addTask route, below)
+    * the Task object will be updated to include the data entered in the form, and this
+    * Task object will be sent to the server as part of the request. */
     @RequestMapping("/")
     public ModelAndView addTask() {
-        return new ModelAndView("tasks.html", "task", new Task());
+        return new ModelAndView("createTask.html", "task", new Task());
     }
     
     /* Handles form submission requests. Saves the Task sent with the request, and
-    * redirect (creates a new request to) the /allTasks page. */
+    * redirect (creates a new request to) the /allTasks route. */
     @RequestMapping(value="/addTask", method=RequestMethod.POST)
     public RedirectView addNewTask(Task task) {
         tasks.save(task);
@@ -46,13 +48,13 @@ public class TaskController {
     }
     
     /* Handles requests to the /allTasks page. The modelMap object will be populated with
-    * a list ot Task objects that we'll get by asking the tasks repository to query
-    * the database. Returns a View (the Thymeleaf template) which be combined with
+    * a list of Task objects that we'll get by asking the tasks repository to query
+    * the database. Returns a View (the Thymeleaf template) which will be combined with
     * the modelMap data to produce the HTML page. */
     @RequestMapping("/allTasks")
     public ModelAndView allTasks(ModelMap modelMap){
-        modelMap.addAttribute("tasks", tasks.findAll(new Sort(Sort.Direction.DESC, "urgent")));
-        return new ModelAndView("alltasks.html", modelMap);
+        modelMap.addAttribute("tasks", tasks.findAllByOrderByUrgentDesc());
+        return new ModelAndView("taskList.html", modelMap);
     }
-    
 }
+
