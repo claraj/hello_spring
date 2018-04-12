@@ -16,7 +16,7 @@ public class HelloApplication {
 	@RequestMapping("/")
     @ResponseBody
 	String home() {
-		return "Please visit /random for a random compliment.";
+	    return "Please visit /random for a random compliment.";
 	}
 
 	public static void main(String[] args) {

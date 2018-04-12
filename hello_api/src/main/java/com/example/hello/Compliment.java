@@ -5,6 +5,7 @@ package com.example.hello;
  */
 
 class Compliment {
+    
     private String text;
     Compliment(String text){ this.text = text;}
    
@@ -17,4 +18,7 @@ class Compliment {
     public void setText(String text) {
         this.text = text;
     }
+
 }
+
+
